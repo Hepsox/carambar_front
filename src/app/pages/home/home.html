@@ -1,1 +1,13 @@
-<p>home works!</p>
+<h1>Blague du jour</h1>
+
+<div *ngIf="loading">Chargement...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div *ngIf="blague && !loading">
+  <p>
+    <strong>{{ blague.question }}</strong>
+  </p>
+  <p>{{ blague.reponse }}</p>
+</div>
+
+<button (click)="getBlague()">Nouvelle blague</button>

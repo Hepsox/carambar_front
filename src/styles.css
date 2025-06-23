@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #e30a7d;
+  --secondary-color: #fedb27;
+  --tertary-color: #38ace3;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+}

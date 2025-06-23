@@ -5,11 +5,11 @@ import { Blague } from '../type/blague.type';
 
 @Injectable({ providedIn: 'root' })
 export class BlagueService {
-  private apiUrl = 'http://localhost:3000/blagues/random';
+  private BASE_URL = 'http://localhost:3000/blagues/random';
 
   constructor(private http: HttpClient) {}
 
   getRandomBlague(): Observable<Blague> {
-    return this.http.get<Blague>(this.apiUrl);
+    return this.http.get<Blague>(this.BASE_URL);
   }
 }

@@ -1,36 +1,26 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BlagueService } from '../../service/blagues.service';
 import { Blague } from '../../type/blague.type';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrls: ['./home.css'],
 })
-export class Home {
-  blague?: Blague;
-  loading = false;
-  error?: string;
+export class Home implements OnInit {
+  blague$!: Observable<Blague>;
 
-  constructor(private blagueService: BlagueService) {
-    this.getBlague();
+  constructor(private service: BlagueService) {}
+
+  ngOnInit(): void {
+    this.loadBlague();
   }
 
-  getBlague() {
-    this.loading = true;
-    this.error = undefined;
-    this.blagueService.getRandomBlague().subscribe({
-      next: (blague) => {
-        this.blague = blague;
-        this.loading = false;
-      },
-      error: (err) => {
-        this.error = 'Erreur lors de la récupération de la blague.';
-        this.loading = false;
-      },
-    });
+  loadBlague(): void {
+    this.blague$ = this.service.getRandomBlague();
   }
 }

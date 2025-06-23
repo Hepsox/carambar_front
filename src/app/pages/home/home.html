@@ -1,13 +1,12 @@
-<h1>Blague du jour</h1>
-
-<div *ngIf="loading">Chargement...</div>
-<div *ngIf="error" class="error">{{ error }}</div>
-
-<div *ngIf="blague && !loading">
-  <p>
-    <strong>{{ blague.question }}</strong>
-  </p>
-  <p>{{ blague.reponse }}</p>
+<div class="container-title">
+  <h1>Tu veux te taper une barre ?</h1>
 </div>
 
-<button (click)="getBlague()">Nouvelle blague</button>
+<div class="container-joke">
+  <p class="joke">{{ (blague$ | async)?.question || '' }}</p>
+  <p class="reponse">{{ (blague$ | async)?.reponse || '' }}</p>
+</div>
+
+<div class="container-button">
+  <button (click)="loadBlague()">Nouvelle blague</button>
+</div>

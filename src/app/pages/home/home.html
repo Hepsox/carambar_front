@@ -2,11 +2,12 @@
   <h1>Tu veux te taper une barre ?</h1>
 </div>
 
-<div class="container-joke">
-  <p class="joke">{{ (blague$ | async)?.question || '' }}</p>
-  <p class="reponse">{{ (blague$ | async)?.reponse || '' }}</p>
-</div>
-
+<ng-container *ngIf="(blague$ | async) as blague">
+  <div class="container-joke">
+    <p class="joke">{{ blague.question || '' }}</p>
+    <p class="reponse">{{ blague.reponse || '' }}</p>
+  </div>
+</ng-container>
 <div class="container-button">
   <button (click)="loadBlague()">Nouvelle blague</button>
 </div>
